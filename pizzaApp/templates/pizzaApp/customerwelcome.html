@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    div table{
+        background-color: blueviolet;
+        border-radius: 10px;
+        margin-top: 50px;
+    }
+    div nav a{
+        color: white;
+    }
+</style>
+
+<div class="container">
+    <nav class="navbar navbar-light bg-dark mt-3">
+        <a class="navbar-brand" style="color: white;"> Welcome {{ username }} </a>
+        <a href="/userorders/" class="navbar-item" style="text-decoration: none;"> My Orders </a>
+        <a href="/userlogout/" class="btn btn-danger">LogOut</a>
+    </nav>
+
+    {% for message in messages %}
+        <p style="text-align: center; color: green;">{{message}}</p>
+    {% endfor %}
+    <form action="/placeorder/" method="POST">
+        {% csrf_token %}
+            <table class="table table-light table-hover" style="width: 100%; background-color: rgba(255,255,255,0.5);">
+                <tr>
+                    <th>Pizza</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                {% for pizza in pizzas %}  <!--add pizzas to context-->
+                <tr>
+                    <td> {{pizza.name}} </td>
+                    <td> {{pizza.price}} </td>
+                    <td><input type="number" min="0" value="0" name="{{pizza.id}}" style="width:60px;"></td>
+                </tr>
+                {% endfor %}
+        
+            </table>
+            <div>
+                <input type="text" placeholder="Address" style="width: 100%; margin-top: 30px; border-radius: 5px;" name="address" id="">
+            </div>
+            <div class="text-center mt-5">
+                <input type="submit" class="btn btn-success" value="Place Order" name="" style="color: white; border-radius: 10px; background-color: green; height: 40px;">
+            </div>
+        </div>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+
+
+{% endblock %}

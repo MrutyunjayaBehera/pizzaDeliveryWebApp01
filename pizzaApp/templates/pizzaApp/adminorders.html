@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<style>
+    body{
+        text-align: center;
+    }
+</style>
+
+<nav class="container navbar navbar-expand navbar-dark bg-dark" 
+    style="margin-top: 10px; margin-bottom: 20px; border-radius: 5px;">
+    <div class="nav navbar-nav">
+        <a href="/admin/homepage/" class="nav-item"><i class="fa fa-backward" style="font-size: 20pt; padding-top: 10px;" aria-hidden="true"></i></a>
+        <a class="nav-item" style="margin-left: 460px; text-decoration: none;"><h2>All Orders</h2></a>
+    </div>
+</nav>
+
+{% for order in orders %}
+<div class="container alert alert-warning" role="alert">
+    <!-- we need to pass all the orders to this template -->
+    <p>{{order.username}}</p>
+    <p>{{order.phoneno}}</p>
+    <p>{{order.address}}</p>
+    <p>{{order.ordereditems}}</p>
+    <p>Order status: {{order.status}}</p>
+    <a href="/acceptorder/{{order.id}}/" class="btn btn-success">Accept</a>
+    <a href="/declineorder/{{order.id}}/" class="btn btn-danger">Decline</a>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<style>
+    body{
+        text-align: center;
+    }
+</style>
+
+<h1 style="text-align: center; color: white; margin-top: 30px;"> My Orders </h1>
+{% for order in orders %}
+<div class="container alert alert-warning" role="alert">
+    <!-- we need to pass all the orders to this template -->
+    <p>{{order.username}}</p>
+    <p>{{order.phoneno}}</p>
+    <p>{{order.address}}</p>
+    <p>{{order.ordereditems}}</p>
+    <p>Order status: {{order.status}}</p>
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}
+    

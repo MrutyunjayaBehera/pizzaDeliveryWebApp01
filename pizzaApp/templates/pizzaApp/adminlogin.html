@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<style>
+    form{
+        background-color: orange;
+        margin: auto;
+        margin-top: 300px;
+        border-radius: 5px;
+        padding: 20px;
+        width: 400px;
+        display: block;
+    }
+    form h2{
+        text-align: center;
+        color: antiquewhite;
+    }
+</style>
+
+<div class="container">
+    <form method="POST" action="/adminauthenticate/">  <!--in action, put the url to which you want to redirect-->
+        {% csrf_token %}
+        <h2>Admin Login</h2>
+        <input type="text" style="margin-bottom: 5px;" class="form-control" placeholder="username" name="username">
+        <input type="password" class="form-control" placeholder="password" name="password">
+
+        <hr class="mb-3">
+        {% for message in messages %}
+        <p style="text-align: center; color:white;" > {{ message }} </p>
+        {% endfor %}
+        <div class="text-center">
+            <input type="submit" class="btn btn-success"  value="Submitt">
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

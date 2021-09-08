@@ -1,0 +1,51 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+    div form input{
+        display: block;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+</style>
+
+<!-- navigation bar -->
+<div class="container" style="margin-top: 50px;">
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand"><b>Welcome</b></a>
+        <!-- <form class="form-inline">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
+        <a href="/loginuser/" class="btn btn-danger">Login</a>  
+      </nav>
+</div>                                                                               
+<!-- navigation bar -->
+
+<div class="container-fluid" style="position: relative;">
+    <div style="width: 500px; height: 350px; background-color: orange; position: absolute;
+                top: 50px; right: 380px; padding: 40px; border-radius: 10px;" class="container">
+        
+        <h1 style="text-align: center; color: antiquewhite;">Sign Up !</h1>
+        <form method="POST" action="/signupuser/">
+            {% csrf_token %}
+            <input class="form-control" placeholder="username" type="text" name="username">
+            <input class='form-control' placeholder="password" type="text" name="password">
+            <input class='form-control' placeholder="phone no." type="text" name="phone no.">
+
+            {% for message in messages %}
+            <p style="text-align: center; color: red;"> {{message}} </p>
+            {% endfor %}
+            
+            <div class="text-center">
+                <input style="margin-top: 20px;" type="submit" value="SignUp" class="btn btn-success">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
